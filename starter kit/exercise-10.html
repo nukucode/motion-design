@@ -1,223 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Exercise #10 || Button with animated loading dots</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise #10 || Button with animated loading dots</title>
 
-	<!-- Reset -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css">
+    <!-- Reset -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
+    />
 
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
 
-	<style>
-		:root {
-			--gray-base: #151618;
-			--gray-tint-10: #2c2d2f;
-			--gray-tint-20: #444546;
-			--gray-tint-40: #737374;
-			--gray-tint-10: #2c2d2f;
-			--gray-tint-10: #2c2d2f;
+    <style>
+      :root {
+        --gray-base: #151618;
+        --gray-tint-10: #2c2d2f;
+        --gray-tint-20: #444546;
+        --gray-tint-40: #737374;
+        --gray-tint-10: #2c2d2f;
+        --gray-tint-10: #2c2d2f;
 
-			--accent-base: #2FA2BD;
-			--accent-tint-90: #EAF6F8;
+        --accent-base: #2fa2bd;
+        --accent-tint-90: #eaf6f8;
 
-			--contextual-success-base: #1FA47C;
-		}
+        --contextual-success-base: #1fa47c;
+      }
 
-		html {
-			font-size: 16px;
-			font-family: 'Plus Jakarta Sans', sans-serif;
-			line-height: 1.5;
-		}
+      html {
+        font-size: 16px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        line-height: 1.5;
+      }
 
-		body {
-			background-color: var(--gray-base);
-			color: var(--gray-base);
-			display: grid;
-			place-content: center;
-			min-height: 100vh;
-		}
+      body {
+        background-color: var(--gray-base);
+        color: var(--gray-base);
+        display: grid;
+        place-content: center;
+        min-height: 100vh;
+      }
 
-		img {
-			display: block;
-			max-width: 100%;
-			height: auto;
-		}
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
 
-		.container {
-			background-color: var(--accent-tint-90);
-			border-radius: 1rem;
-			padding: .5rem;
-			display: grid;
-			grid-template-columns: 25rem 1fr;
-			align-items: center;
-			min-height: 50rem;
-		}
+      .container {
+        background-color: var(--accent-tint-90);
+        border-radius: 1rem;
+        padding: 0.5rem;
+        display: grid;
+        grid-template-columns: 25rem 1fr;
+        align-items: center;
+        min-height: 50rem;
+      }
 
-		.well {
-			background-color: white;
-			padding: 4rem;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: space-between;
-			align-self: stretch;
-			border-radius: .5rem;
-		}
+      .well {
+        background-color: white;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        align-self: stretch;
+        border-radius: 0.5rem;
+      }
 
-		h1 {
-			font-size: 1.5rem;
-			font-weight: 700;
-			margin: 0 0 .5em;
-		}
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 0 0.5em;
+      }
 
-		h2 {
-			font-size: 1rem;
-			font-weight: 200;
-			margin: 0 0 .5em;
-			color: var(--gray-tint-20);
-		}
+      h2 {
+        font-size: 1rem;
+        font-weight: 200;
+        margin: 0 0 0.5em;
+        color: var(--gray-tint-20);
+      }
 
-		hgroup {
-			text-align: center;
-			margin-bottom: 4rem;
-		}
+      hgroup {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
 
-		a,
-		p {
-			font-size: .8125rem;
-		}
+      a,
+      p {
+        font-size: 0.8125rem;
+      }
 
-		form {
-			width: 100%;
-		}
+      form {
+        width: 100%;
+      }
 
-		form > div {
-			position: relative;
-			margin-bottom: 2rem;
-		}
+      form > div {
+        position: relative;
+        margin-bottom: 2rem;
+      }
 
-		label {
-			color: var(--gray-tint-40);
-			position: absolute;
-			left: 0;
-			top: .25rem;
-			transition: all .3s;
-			cursor: pointer;
-		}
+      label {
+        color: var(--gray-tint-40);
+        position: absolute;
+        left: 0;
+        top: 0.25rem;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
 
-		input {
-			border: none;
-			border-bottom: 1px solid var(--gray-tint-40);
-			height: 2.25rem;
-			width: 100%;
-			outline: none;
-			transition: border-color .3s ease;
-		}
+      input {
+        border: none;
+        border-bottom: 1px solid var(--gray-tint-40);
+        height: 2.25rem;
+        width: 100%;
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
 
-		input:focus {
-			border-color: var(--gray-base);
-		}
+      input:focus {
+        border-color: var(--gray-base);
+      }
 
-		input:focus + label,
-		input:valid + label {
-			transform: translateY(-1.25rem);
-			font-size: .8125rem;
-			color: var(--gray-base);
-		}
+      input:focus + label,
+      input:valid + label {
+        transform: translateY(-1.25rem);
+        font-size: 0.8125rem;
+        color: var(--gray-base);
+      }
 
-		a {
-			color: var(--accent-base);
-			transition: color .3s ease-in-out;
-		}
+      a {
+        color: var(--accent-base);
+        transition: color 0.3s ease-in-out;
+      }
 
-		a:hover {
-			color: var(--gray-base);
-		}
+      a:hover {
+        color: var(--gray-base);
+      }
 
-		#forgot-pwd {
-			display: block;
-			margin-bottom: 4rem;
-		}
+      #forgot-pwd {
+        display: block;
+        margin-bottom: 4rem;
+      }
 
-		.button {
-			width: 100%;
-			background-color: var(--gray-base);
-			appearance: none;
-			border: none;
-			padding: 1rem 2rem;
-			color: white;
-			font-size: 1rem;
-			cursor: pointer;
-			border-radius: 100px;
-			font-weight: bold;
-			transition: background-color .3s, transform .2s;
-		}
+      .button {
+        width: 100%;
+        background-color: var(--gray-base);
+        appearance: none;
+        border: none;
+        padding: 1rem 2rem;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 100px;
+        font-weight: bold;
+        transition: background-color 0.3s, transform 0.2s;
+      }
 
-		.button:hover {
-			background-color: var(--gray-tint-10);
-		}
+      .button:hover {
+        background-color: var(--gray-tint-10);
+      }
 
-		.button:active {
-			transform: translate3d(3px, 3px, 0);
-		}
+      .button:active {
+        transform: translate3d(3px, 3px, 0);
+      }
 
-		/* Air */
-	</style>
-</head>
-<body>
-	<div class="container">
-		<div class="well">
-			<img src="images/logo-nn.svg" alt="Logo">
+      .button--loader {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
+      }
 
-			<form action="#" method="post">
-				<hgroup>
-					<h1>Welcome back!</h1>
-					<h2>Log in to your account.</h2>
-				</hgroup>
+      .button--loader > div {
+        width: 0.8rem;
+        height: 0.8rem;
+        background-color: white;
+        border-radius: 50%;
+        animation: 1.2s infinite ease-in-out scaleUp;
+      }
 
-				<div>
-					<input type="text" name="login-username" id="login-username" required>
-					<label for="login-username">Username</label>
-				</div>
+      .button--loader > div:nth-child(1) {
+        animation-delay: 0.32s;
+      }
 
-				<div>
-					<input type="password" name="login-pwd" id="login-pwd" required>
-					<label for="login-pwd">Password</label>
-				</div>
+      .button--loader > div:nth-child(2) {
+        animation-delay: 0.16s;
+      }
 
-				<a href="#" id="forgot-pwd">Forgot Password?</a>
+      @keyframes scaleUp {
+        0%,
+        80%,
+        100% {
+          transform: scale(0);
+        }
 
-				<button class="button" id="btn-submit">
-					<span class="button--text">Log In</span>
+        40% {
+          transform: scale(1);
+        }
+      }
 
-					<!-- Air -->
-					<div class="button--loader">
-						<div></div>
-						<div></div>
-						<div></div>
-					</div>
-					<!-- End Air -->
-				</button>
-			</form>
+      .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.5rem;
+      }
 
-			<p>Don't have an account? <a href="#">Sign Up</a>.</p>
-		</div>
+      .button--loader {
+        display: none;
+      }
 
-		<img src="illustrations/captain@c.svg" alt="Captain">
-	</div>
+      .button.loading .button--text {
+        display: none;
+      }
 
-	<script>
-		const submitButton = document.querySelector('#btn-submit')
-		const submitButtonText = document.querySelector('#btn-submit .button--text')
+      .button.loading .button--loader {
+        display: flex;
+      }
 
-		submitButton.addEventListener('click', (e) => {
-			// Air
-		})
-	</script>
-</body>
+      .button.success .button--text {
+        display: block;
+      }
+
+      .button.success {
+        background-color: var(--contextual-success-base);
+      }
+
+	  .button.loading{
+		cursor: wait;
+	  }
+
+      /* Air */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="well">
+        <img src="images/logo-nn.svg" alt="Logo" />
+
+        <form action="#" method="post">
+          <hgroup>
+            <h1>Welcome back!</h1>
+            <h2>Log in to your account.</h2>
+          </hgroup>
+
+          <div>
+            <input
+              type="text"
+              name="login-username"
+              id="login-username"
+              required
+            />
+            <label for="login-username">Username</label>
+          </div>
+
+          <div>
+            <input type="password" name="login-pwd" id="login-pwd" required />
+            <label for="login-pwd">Password</label>
+          </div>
+
+          <a href="#" id="forgot-pwd">Forgot Password?</a>
+
+          <button class="button" id="btn-submit">
+            <span class="button--text">Log In</span>
+
+            <!-- Air -->
+            <div class="button--loader">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <!-- End Air -->
+          </button>
+        </form>
+
+        <p>Don't have an account? <a href="#">Sign Up</a>.</p>
+      </div>
+
+      <img src="illustrations/captain@c.svg" alt="Captain" />
+    </div>
+
+    <script>
+      const submitButton = document.querySelector("#btn-submit");
+      const submitButtonText = document.querySelector(
+        "#btn-submit .button--text"
+      );
+
+      submitButton.addEventListener("click", (e) => {
+        submitButton.classList.add("loading");
+
+        setTimeout(() => {
+          submitButton.classList.remove("loading");
+          submitButton.classList.add("success");
+          submitButtonText.innerHTML = "Login Successful";
+        }, 4000);
+      });
+    </script>
+  </body>
 </html>
